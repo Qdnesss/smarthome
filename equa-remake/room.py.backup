@@ -1,0 +1,34 @@
+from device import Device
+
+class Room:
+    def __init__(self, name: str):
+        self.name = name
+        self.devices: list[Device] = []
+        self.temperature = 22
+        self.light_level = 50  # 0–100
+
+    def add_device(self, device: Device):
+        self.devices.append(device)
+
+    def total_power(self):
+        return sum(d.get_consumption() for d in self.devices)
+
+    # сценарии
+    def morning(self):
+        self.temperature = 23
+        self.light_level = 80
+        for d in self.devices:
+            d.turn_on()
+
+    def evening(self):
+        self.temperature = 21
+        self.light_level = 30
+
+    def vacation(self):
+        self.temperature = 18
+        self.light_level = 0
+        for d in self.devices:
+            d.turn_off()
+
+    def __str__(self):
+        return f"{self.name} | {len(self.devices)} устройств | {self.total_power()}W"
