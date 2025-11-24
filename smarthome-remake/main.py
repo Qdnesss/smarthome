@@ -26,7 +26,7 @@ def run_cli():
             name = input("Название комнаты: ")
             home.add_room(Room(name))
             print("Добавлено.")
-# здесь был Бараускас
+
         elif cmd == "2":
             if not home.rooms:
                 print("Нет комнат.")
